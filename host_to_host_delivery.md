@@ -15,43 +15,43 @@ bytes.
 
 Binary | Decimal
 --- | ---:
-$\texttt{00000001}$ | $2^{0} = 1$
-$\texttt{00000010}$ | $2^{1} = 2$
-$\texttt{00000100}$ | $2^{2} = 4$
-$\texttt{00001000}$ | $2^{3} = 8$
-$\texttt{00010000}$ | $2^{4} = 16$
-$\texttt{00100000}$ | $2^{5} = 32$
-$\texttt{01000000}$ | $2^{6} = 64$
-$\texttt{10000000}$ | $2^{7} = 128$
+$\texttt{00000001}$ | $2^0 = 1$
+$\texttt{00000010}$ | $2^1 = 2$
+$\texttt{00000100}$ | $2^2 = 4$
+$\texttt{00001000}$ | $2^3 = 8$
+$\texttt{00010000}$ | $2^4 = 16$
+$\texttt{00100000}$ | $2^5 = 32$
+$\texttt{01000000}$ | $2^6 = 64$
+$\texttt{10000000}$ | $2^7 = 128$
 
 > #### Example 1
 >
 > > Change the following IP addresses from binary notation to dotted-decimal
     notation.
 > >
-> > 1.  $\texttt{10000001 00001011 00001011 11101111}$
+> > 1.  $\texttt{10000001.00001011.00001011.11101111}$
 >
 > $$
 > \begin{align}
->   \underbrace{\texttt{10000001}}_{2^{7} + 2^{0}} \
->   \underbrace{\texttt{00001011}}_{2^{3} + 2^{1} + 2^{0}} \
->   \underbrace{\texttt{00001011}}_{2^{3} + 2^{1} + 2^{0}} \
->   \underbrace{\texttt{11101111}}_{2^{7} + 2^{6} + 2^{5} + 2^{3} + 2^{2} + 2^{1} + 2^{0}} \
+>   \underbrace{\texttt{10000001}}_{2^7 + 2^0} \
+>   \underbrace{\texttt{00001011}}_{2^3 + 2^1 + 2^0} \
+>   \underbrace{\texttt{00001011}}_{2^3 + 2^1 + 2^0} \
+>   \underbrace{\texttt{11101111}}_{2^7 + 2^6 + 2^5 + 2^3 + 2^2 + 2^1 + 2^0} \
 >   &= \\
->   (128 + 1) \ (8 + 2 + 1) \ (8 + 2 + 1) \ (128 + 64 + 32 + 8 + 4 + 2 + 1) &= \texttt{129.11.11.239}
+>   (128 + 1) . (8 + 2 + 1) . (8 + 2 + 1) . (128 + 64 + 32 + 8 + 4 + 2 + 1) &= \texttt{129.11.11.239}
 > \end{align}
 > $$
 >
-> > 2.  $\texttt{11111001 10011011 11111011 00001111}$
+> > 2.  $\texttt{11111001.10011011.11111011.00001111}$
 >
 > $$
 > \begin{align}
->   \underbrace{\texttt{11111001}}_{2^{7} + 2^{6} + 2^{5} + 2^{4} + 2^{3} + 2^{0}} \
->   \underbrace{\texttt{10011011}}_{2^{7} + 2^{4} + 2^{3} + 2^{1} + 2^{0}} \
->   \underbrace{\texttt{11111011}}_{2^{7} + 2^{6} + 2^{5} + 2^{4} + 2^{3} + 2^{1} + 2^{0}} \
->   \underbrace{\texttt{00001111}}_{2^{3} + 2^{2} + 2^{1} + 2^{0}} \
+>   \underbrace{\texttt{11111001}}_{2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^0} \
+>   \underbrace{\texttt{10011011}}_{2^7 + 2^4 + 2^3 + 2^1 + 2^0} \
+>   \underbrace{\texttt{11111011}}_{2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^1 + 2^0} \
+>   \underbrace{\texttt{00001111}}_{2^3 + 2^2 + 2^1 + 2^0} \
 >   &= \\
->   (128 + 64 + 32 + 16 + 8 + 1) \ (128 + 16 + 8 + 2 + 1) \ (128 + 64 + 32 + 16 + 8 + 2 + 1) \ (8 + 4 + 2 + 1) &= \texttt{249.155.251.15}
+>   (128 + 64 + 32 + 16 + 8 + 1) . (128 + 16 + 8 + 2 + 1) . (128 + 64 + 32 + 16 + 8 + 2 + 1) . (8 + 4 + 2 + 1) &= \texttt{249.155.251.15}
 > \end{align}
 > $$
 
@@ -64,15 +64,15 @@ $\texttt{10000000}$ | $2^{7} = 128$
 >
 > $$
 > \begin{align}
->   \underbrace{\texttt{111}}_{64 + 32 + 8 + 4 + 2 + 1} \
->   \underbrace{\texttt{56}}_{32 + 16 + 8} \
->   \underbrace{\texttt{45}}_{32 + 8 + 4 + 1} \
->   \underbrace{\texttt{78}}_{64 + 8 + 4 + 2} \
+>   \underbrace{\texttt{111}}_{64 + 32 + 8 + 4 + 2 + 1} .
+>   \underbrace{\texttt{56}}_{32 + 16 + 8} .
+>   \underbrace{\texttt{45}}_{32 + 8 + 4 + 1} .
+>   \underbrace{\texttt{78}}_{64 + 8 + 4 + 2}
 >   &= \\
->   (2^{6} + 2^{5} + 2^{3} + 2^{2} + 2^{1} + 2^{0}) \
->   (2^{5} + 2^{4} + 2^{3}) \
->   (2^{5} + 2^{3} + 2^{2} + 2^{0}) \
->   (2^{6} + 2^{3} + 2^{2} + 2^{1}) &= \texttt{01101111.00111000.00101101.01001110}
+>   (2^6 + 2^5 + 2^3 + 2^2 + 2^1 + 2^0) .
+>   (2^5 + 2^4 + 2^3) .
+>   (2^5 + 2^3 + 2^2 + 2^0) .
+>   (2^6 + 2^3 + 2^2 + 2^1) &= \texttt{01101111.00111000.00101101.01001110}
 > \end{align}
 > $$
 >
@@ -80,15 +80,15 @@ $\texttt{10000000}$ | $2^{7} = 128$
 >
 > $$
 > \begin{align}
->   \underbrace{\texttt{75}}_{64 + 8 + 2 + 1} \
->   \underbrace{\texttt{45}}_{32 + 8 + 4 + 1} \
->   \underbrace{\texttt{34}}_{32 + 2} \
->   \underbrace{\texttt{78}}_{64 + 8 + 4 + 2} \
+>   \underbrace{\texttt{75}}_{64 + 8 + 2 + 1} .
+>   \underbrace{\texttt{45}}_{32 + 8 + 4 + 1} .
+>   \underbrace{\texttt{34}}_{32 + 2} .
+>   \underbrace{\texttt{78}}_{64 + 8 + 4 + 2}
 >   &= \\
->   (2^{6} + 2^{3} + 2^{1} + 2^{0}) \
->   (2^{5} + 2^{3} + 2^{2} + 2^{0}) \
->   (2^{5} + 2^{1}) \
->   (2^{6} + 2^{3} + 2^{2} + 2^{1}) &= \texttt{01001011.00101101.00100010.01001110}
+>   (2^6 + 2^3 + 2^1 + 2^0) .
+>   (2^5 + 2^3 + 2^2 + 2^0) .
+>   (2^5 + 2^1) .
+>   (2^6 + 2^3 + 2^2 + 2^1) &= \texttt{01001011.00101101.00100010.01001110}
 > \end{align}
 > $$
 
@@ -107,22 +107,22 @@ E | $\texttt{240} \dots \texttt{255}$
 >
 > > Find the class of each address:
 > >
-> > 1.  00000001 00001011 00001011 11101111
+> > 1.  00000001.00001011.00001011.11101111
 >
 > $$
 > \begin{align}
->   \underbrace{\texttt{00000001}}_{2^{0}} &= 1 \\
->   0 \leq 1 \leq 127 &\Rightarrow \textbf{Class A} \\
+>   \underbrace{\texttt{00000001}}_{2^0} &= 1 \\
+>   0 \leq 1 \leq 127 &\Rightarrow \textbf{Class A}
 > \end{align}
 > $$
 >
-> > 2.  11110011 10011011 11111011 00001111
+> > 2.  11110011.10011011.11111011.00001111
 >
 > $$
 > \begin{align}
->   \underbrace{\texttt{11110011}}_{2^{7} + 2^{6} + 2^{5} + 2^{4} + 2^{1} + 2^{0}} &= \\
+>   \underbrace{\texttt{11110011}}_{2^7 + 2^6 + 2^5 + 2^4 + 2^1 + 2^0} &= \\
 >   128 + 64 + 32 + 16 + 2 + 1 &= 243 \\
-> 240 \leq 243 \leq 255 &\Rightarrow \textbf{Class E} \\
+> 240 \leq 243 \leq 255 &\Rightarrow \textbf{Class E}
 > \end{align}
 > $$
 
@@ -224,7 +224,7 @@ Properties of the network address:
 > > Given the address $\texttt{23.56.7.91}$, find the network address.
 >
 > $$
-> 0 \leq 23 \leq 127 \Rightarrow \textsf{Class A}
+> 0 \leq 23 \leq 127 \Rightarrow \textbf{Class A}
 > $$
 >
 > The class is A. Only the first byte defines the netid. We can find the network
@@ -236,7 +236,7 @@ Properties of the network address:
 > > Given the address $\texttt{132.6.17.85}$, find the network address.
 >
 > $$
-> 128 \leq 132 \leq 191 \Rightarrow \textsf{Class B}
+> 128 \leq 132 \leq 191 \Rightarrow \textbf{Class B}
 > $$
 >
 > In class B, the first two bytes define the netid. We can find the network
@@ -299,7 +299,7 @@ block-beta
 >
 > 1.  The router looks at the first byte of the address to find the class.
 >     $$
->     128 \leq 190 \leq 191 \Rightarrow \textsf{Class B}
+>     128 \leq 190 \leq 191 \Rightarrow \textbf{Class B}
 >     $$
 > 1.  The default mask for class B is $\texttt{255.255.0.0}$. The router ANDs
       this mask with the address to get $\texttt{190.240.0.0}$.
@@ -317,9 +317,9 @@ $\log_{2} N$
 
 $$
 \begin{align}
-  N = 4 &&&& \log_{2} 4 = 2 \\
-  N = 8 &&&& \log_{2} 8 = 3 \\
-  N = 16 &&&& \log_{2} 16 = 4 \\
+  N = 4 && \log_{2} 4 = 2 \\
+  N = 8 && \log_{2} 8 = 3 \\
+  N = 16 && \log_{2} 16 = 4
 \end{align}
 $$
 
@@ -339,7 +339,7 @@ $$
 >       \texttt{33} =& \texttt{00100001} \\
 >       \texttt{/19} =& \underline{\texttt{11100000}} \\
 >       & \texttt{00100000} = \\
->       & 2^{5} = \mathbf{32}
+>       & 2^5 = \mathbf{32}
 >     \end{align}
 >     $$
 >     The subnet address is $\texttt{190.240.32.0}$.
@@ -361,34 +361,34 @@ way we found the network address, we apply the mask to the address.
 > $$
 > \begin{align}
 >   \texttt{200.45.34.56} &= \\
->   (128 + 64 + 8) \ (32 + 8 + 4 + 1) \ (32 + 2) \ (32 + 16 + 8) &= \\
->   (2^{7} + 2^{6} + 2^{3}) \ (2^{5} + 2^{3} + 2^{2} + 2^{0}) \ (2^{5} + 2^{1}) \ (2^{5} + 2^{4} + 2^{3}) &= \texttt{11001000 00101101 00100010 00111000}
+>   (128 + 64 + 8) . (32 + 8 + 4 + 1) . (32 + 2) . (32 + 16 + 8) &= \\
+>   (2^7 + 2^6 + 2^3) . (2^5 + 2^3 + 2^2 + 2^0) . (2^5 + 2^1) . (2^5 + 2^4 + 2^3) &= \texttt{11001000.00101101.00100010.00111000}
 > \end{align}
 > $$
 >
 > $$
 > \begin{align}
 >   \texttt{255.255.240.0} &= \\
->   (128 + 64 + 32 + 16 + 8) \ (128 + 64 + 32 + 16 + 8) \ (128 + 64) \ (0) &= \\
->   (2^{7} + 2^{6} + 2^{5} + 2^{4} + 2^{3}) \ (2^{7} + 2^{6} + 2^{5} + 2^{4} + 2^{3}) \ (2^{7} + 2^{6}) \ (0) &= \texttt{11111111 11111111 11110000 00000000}
+>   (128 + 64 + 32 + 16 + 8) . (128 + 64 + 32 + 16 + 8) . (128 + 64) . 0 &= \\
+>   (2^7 + 2^6 + 2^5 + 2^4 + 2^3) . (2^7 + 2^6 + 2^5 + 2^4 + 2^3) . (2^7 + 2^6) . 0 &= \texttt{11111111.11111111.11110000.00000000}
 > \end{align}
 > $$
 >
 > $$
 > \begin{align}
->   \texttt{11001000 00101101 00100010 00111000} \\
->   \underline{\texttt{11111111 11111111 11110000 00000000}} \\
->   \underbrace{\texttt{11001000}}_{2^{7} + 2^{6} + 2^{3}} \
->   \underbrace{\texttt{00101101}}_{2^{5} + 2^{3} + 2^{2} + 2^{0}} \
->   \underbrace{\texttt{00100000}}_{2^{5}} \
+>   \texttt{11001000.00101101.00100010.00111000} \\
+>   \underline{\texttt{11111111.11111111.11110000.00000000}} \\
+>   \underbrace{\texttt{11001000}}_{2^7 + 2^6 + 2^3} .
+>   \underbrace{\texttt{00101101}}_{2^5 + 2^3 + 2^2 + 2^0} .
+>   \underbrace{\texttt{00100000}}_{2^5} .
 >   \underbrace{\texttt{00000000}}_{0} &= \\
->   (128 + 64 + 8) \ (32 + 8 + 4 + 1) \ (32) \ (0) &= \texttt{200.45.32.0}
+>   (128 + 64 + 8) . (32 + 8 + 4 + 1) . (32) . 0 &= \texttt{200.45.32.0}
 > \end{align}
 > $$
 
 The number of subnets can be found by counting the extra $1 \textsf{s}$ that are
 added to the default mask. For example, if the number of extra $1 \textsf{s}$
-is $3$, the number of subnets is $2^{3} = 8$.
+is $3$, the number of subnets is $2^3 = 8$.
 
 The number of addresses per subnetwork can be found by counting the number of
 $0 \textsf{s}$ in the subnet mask. If the number of $0 \textsf{s}$ is $13$,
