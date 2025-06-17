@@ -1,3 +1,9 @@
+<!-- Mermaid -->
+<script
+  type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/mermaid@10.4.0/dist/mermaid.min.js">
+</script>
+
 # Network layers
 
 Each layer uses the services of the layer below it.

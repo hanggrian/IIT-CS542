@@ -1,3 +1,18 @@
+<!-- KaTeX -->
+<script
+  type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({ tex2jax: { inlineMath: [['$', '$']] }, messageStyle: 'none' });
+</script>
+
+<!-- Mermaid -->
+<script
+  type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/mermaid@10.4.0/dist/mermaid.min.js">
+</script>
+
 # Host-to-host delivery
 
 In the datagram approach to packet switching, each packet is treated
@@ -33,11 +48,12 @@ $\texttt{10000000}$ | $2^7 = 128$
 >
 > $$
 > \begin{align}
->   \underbrace{\texttt{10000001}}_{2^7 + 2^0} \
->   \underbrace{\texttt{00001011}}_{2^3 + 2^1 + 2^0} \
->   \underbrace{\texttt{00001011}}_{2^3 + 2^1 + 2^0} \
->   \underbrace{\texttt{11101111}}_{2^7 + 2^6 + 2^5 + 2^3 + 2^2 + 2^1 + 2^0} \
->   &= \\
+>   \texttt{10000001} \
+>   \texttt{00001011} \
+>   \texttt{00001011} \
+>   \texttt{11101111} \
+>   &= \\\\
+>   (2^7 + 2^0) . (2^3 + 2^1 + 2^0) . (2^3 + 2^1 + 2^0) . (2^7 + 2^6 + 2^5 + 2^3 + 2^2 + 2^1 + 2^0) &= \\\\
 >   (128 + 1) . (8 + 2 + 1) . (8 + 2 + 1) . (128 + 64 + 32 + 8 + 4 + 2 + 1) &= \texttt{129.11.11.239}
 > \end{align}
 > $$
@@ -46,11 +62,12 @@ $\texttt{10000000}$ | $2^7 = 128$
 >
 > $$
 > \begin{align}
->   \underbrace{\texttt{11111001}}_{2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^0} \
->   \underbrace{\texttt{10011011}}_{2^7 + 2^4 + 2^3 + 2^1 + 2^0} \
->   \underbrace{\texttt{11111011}}_{2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^1 + 2^0} \
->   \underbrace{\texttt{00001111}}_{2^3 + 2^2 + 2^1 + 2^0} \
->   &= \\
+>   \texttt{11111001} \
+>   \texttt{10011011} \
+>   \texttt{11111011} \
+>   \texttt{00001111} \
+>   &= \\\\
+>   (2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^0) . (2^7 + 2^4 + 2^3 + 2^1 + 2^0) . (2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^1 + 2^0) . (2^3 + 2^2 + 2^1 + 2^0) &= \\\\
 >   (128 + 64 + 32 + 16 + 8 + 1) . (128 + 16 + 8 + 2 + 1) . (128 + 64 + 32 + 16 + 8 + 2 + 1) . (8 + 4 + 2 + 1) &= \texttt{249.155.251.15}
 > \end{align}
 > $$
@@ -64,11 +81,15 @@ $\texttt{10000000}$ | $2^7 = 128$
 >
 > $$
 > \begin{align}
->   \underbrace{\texttt{111}}_{64 + 32 + 8 + 4 + 2 + 1} .
->   \underbrace{\texttt{56}}_{32 + 16 + 8} .
->   \underbrace{\texttt{45}}_{32 + 8 + 4 + 1} .
->   \underbrace{\texttt{78}}_{64 + 8 + 4 + 2}
->   &= \\
+>   \texttt{111} .
+>   \texttt{56} .
+>   \texttt{45} .
+>   \texttt{78}
+>   &= \\\\
+>   (64 + 32 + 8 + 4 + 2 + 1) .
+>   (32 + 16 + 8) .
+>   (32 + 8 + 4 + 1) .
+>   (64 + 8 + 4 + 2) &= \\\\
 >   (2^6 + 2^5 + 2^3 + 2^2 + 2^1 + 2^0) .
 >   (2^5 + 2^4 + 2^3) .
 >   (2^5 + 2^3 + 2^2 + 2^0) .
@@ -80,11 +101,15 @@ $\texttt{10000000}$ | $2^7 = 128$
 >
 > $$
 > \begin{align}
->   \underbrace{\texttt{75}}_{64 + 8 + 2 + 1} .
->   \underbrace{\texttt{45}}_{32 + 8 + 4 + 1} .
->   \underbrace{\texttt{34}}_{32 + 2} .
->   \underbrace{\texttt{78}}_{64 + 8 + 4 + 2}
->   &= \\
+>   \texttt{75} .
+>   \texttt{45} .
+>   \texttt{34} .
+>   \texttt{78}
+>   &= \\\\
+>   (64 + 8 + 2 + 1) .
+>   (32 + 8 + 4 + 1) .
+>   (32 + 2) .
+>   (64 + 8 + 4 + 2) &= \\\\
 >   (2^6 + 2^3 + 2^1 + 2^0) .
 >   (2^5 + 2^3 + 2^2 + 2^0) .
 >   (2^5 + 2^1) .
@@ -111,7 +136,7 @@ E | $\texttt{240} \dots \texttt{255}$
 >
 > $$
 > \begin{align}
->   \underbrace{\texttt{00000001}}_{2^0} &= 1 \\
+>   \underbrace{\texttt{00000001}}_{2^0} &= 1 \\\\
 >   0 \leq 1 \leq 127 &\Rightarrow \textbf{Class A}
 > \end{align}
 > $$
@@ -120,8 +145,8 @@ E | $\texttt{240} \dots \texttt{255}$
 >
 > $$
 > \begin{align}
->   \underbrace{\texttt{11110011}}_{2^7 + 2^6 + 2^5 + 2^4 + 2^1 + 2^0} &= \\
->   128 + 64 + 32 + 16 + 2 + 1 &= 243 \\
+>   \underbrace{\texttt{11110011}}_{2^7 + 2^6 + 2^5 + 2^4 + 2^1 + 2^0} &= \\\\
+>   128 + 64 + 32 + 16 + 2 + 1 &= 243 \\\\
 > 240 \leq 243 \leq 255 &\Rightarrow \textbf{Class E}
 > \end{align}
 > $$
@@ -317,8 +342,8 @@ $\log_{2} N$
 
 $$
 \begin{align}
-  N = 4 && \log_{2} 4 = 2 \\
-  N = 8 && \log_{2} 8 = 3 \\
+  N = 4 && \log_{2} 4 = 2 \\\\
+  N = 8 && \log_{2} 8 = 3 \\\\
   N = 16 && \log_{2} 16 = 4
 \end{align}
 $$
@@ -336,9 +361,9 @@ $$
 > 1.  The router applies the mask to the address.
 >     $$
 >     \begin{align}
->       \texttt{33} =& \texttt{00100001} \\
->       \texttt{/19} =& \underline{\texttt{11100000}} \\
->       & \texttt{00100000} = \\
+>       \texttt{33} =& \texttt{00100001} \\\\
+>       \texttt{/19} =& \underline{\texttt{11100000}} \\\\
+>       & \texttt{00100000} = \\\\
 >       & 2^5 = \mathbf{32}
 >     \end{align}
 >     $$
@@ -360,28 +385,29 @@ way we found the network address, we apply the mask to the address.
 >
 > $$
 > \begin{align}
->   \texttt{200.45.34.56} &= \\
->   (128 + 64 + 8) . (32 + 8 + 4 + 1) . (32 + 2) . (32 + 16 + 8) &= \\
+>   \texttt{200.45.34.56} &= \\\\
+>   (128 + 64 + 8) . (32 + 8 + 4 + 1) . (32 + 2) . (32 + 16 + 8) &= \\\\
 >   (2^7 + 2^6 + 2^3) . (2^5 + 2^3 + 2^2 + 2^0) . (2^5 + 2^1) . (2^5 + 2^4 + 2^3) &= \texttt{11001000.00101101.00100010.00111000}
 > \end{align}
 > $$
 >
 > $$
 > \begin{align}
->   \texttt{255.255.240.0} &= \\
->   (128 + 64 + 32 + 16 + 8) . (128 + 64 + 32 + 16 + 8) . (128 + 64) . 0 &= \\
+>   \texttt{255.255.240.0} &= \\\\
+>   (128 + 64 + 32 + 16 + 8) . (128 + 64 + 32 + 16 + 8) . (128 + 64) . 0 &= \\\\
 >   (2^7 + 2^6 + 2^5 + 2^4 + 2^3) . (2^7 + 2^6 + 2^5 + 2^4 + 2^3) . (2^7 + 2^6) . 0 &= \texttt{11111111.11111111.11110000.00000000}
 > \end{align}
 > $$
 >
 > $$
 > \begin{align}
->   \texttt{11001000.00101101.00100010.00111000} \\
->   \underline{\texttt{11111111.11111111.11110000.00000000}} \\
->   \underbrace{\texttt{11001000}}_{2^7 + 2^6 + 2^3} .
->   \underbrace{\texttt{00101101}}_{2^5 + 2^3 + 2^2 + 2^0} .
->   \underbrace{\texttt{00100000}}_{2^5} .
->   \underbrace{\texttt{00000000}}_{0} &= \\
+>   \texttt{11001000.00101101.00100010.00111000} \\\\
+>   \underline{\texttt{11111111.11111111.11110000.00000000}} \\\\
+>   \texttt{11001000} .
+>   \texttt{00101101} .
+>   \texttt{00100000} .
+>   \texttt{00000000} &= \\\\
+>   (2^7 + 2^6 + 2^3) . (2^5 + 2^3 + 2^2 + 2^0) . (2^5) . 0 &= \\\\
 >   (128 + 64 + 8) . (32 + 8 + 4 + 1) . (32) . 0 &= \texttt{200.45.32.0}
 > \end{align}
 > $$
