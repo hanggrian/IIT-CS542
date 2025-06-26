@@ -4,7 +4,10 @@
   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({ tex2jax: { inlineMath: [['$', '$']] }, messageStyle: 'none' });
+  MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['$', '$']]},
+    messageStyle: 'none',
+  });
 </script>
 
 <style>ol { list-style-type: lower-alpha; }</style>
@@ -35,14 +38,14 @@ where $2^n$ is greater than (or equal to) the target number of subnets.
 
 $$
 \begin{align}
-  n &= 2 && 2^2 = 4 < 6 & \textsf{NO} \\\\
-  n &= 3 && 2^3 = 8 \geq 6 & \textbf{YES} \\\\
-  n &= 5 && 2^5 = 32 < 62 & \textsf{NO} \\\\
-  n &= 6 && 2^6 = 64 \geq 62 & \textbf{YES} \\\\
-  & && 2^6 = 64 < 122 & \textsf{NO} \\\\
-  n &= 7 && 2^7 = 128 \geq 122 & \textbf{YES} \\\\
-  & && 2^7 = 128 < 250 & \textsf{NO} \\\\
-  n &= 8 && 2^8 = 256 \geq 250 & \textbf{YES}
+  n &= 2 && 2^2 = 4 < 6 && \textsf{NO} \\\\
+  n &= 3 && 2^3 = 8 \geq 6 && \textbf{YES} \\\\
+  n &= 5 && 2^5 = 32 < 62 && \textsf{NO} \\\\
+  n &= 6 && 2^6 = 64 \geq 62 && \textbf{YES} \\\\
+  & && 2^6 = 64 < 122 && \textsf{NO} \\\\
+  n &= 7 && 2^7 = 128 \geq 122 && \textbf{YES} \\\\
+  & && 2^7 = 128 < 250 && \textsf{NO} \\\\
+  n &= 8 && 2^8 = 256 \geq 250 && \textbf{YES}
 \end{align}
 $$
 
@@ -72,9 +75,9 @@ are used for host ID.
 $$
 \begin{align}
   \textsf{Default mask} &=
-  \underbrace{\texttt{255}}_{128 + 64 + 32 + 16 + 8 + 4 + 2 + 1} .
-  \texttt{0.0.0} \\\\
-  &= (2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0) . \\\\
+    \underbrace{\texttt{255}}_{128 + 64 + 32 + 16 + 8 + 4 + 2 + 1} .
+    \texttt{0.0.0} \\\\
+  &= 2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0 . \\\\
   &\quad 0 . \\\\
   &\quad 0 . \\\\
   &\quad 0 \\\\
@@ -85,13 +88,13 @@ $$
 $$
 \begin{align}
   \textsf{Subnet mask} &=
-  \texttt{255} .
-  \texttt{255} .
-  \underbrace{\texttt{240}}_{128 + 64 + 32 + 16} .
-  \texttt{0} \\\\
-  &= (2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0) . \\\\
-  &\quad (2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0) . \\\\
-  &\quad (2^7 + 2^6 + 2^5 + 2^4) . \\\\
+    \texttt{255} .
+    \texttt{255} .
+    \underbrace{\texttt{240}}_{128 + 64 + 32 + 16} .
+    \texttt{0} \\\\
+  &= 2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0 . \\\\
+  &\quad 2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0 . \\\\
+  &\quad 2^7 + 2^6 + 2^5 + 2^4 . \\\\
   &\quad 0 \\\\
   &= \texttt{11111111.11111111.11110000.00000000} &= \mathbf{20} \ \textbf{bits}
 \end{align}
@@ -103,7 +106,8 @@ calculated as $2^\textsf{Borrowed bits}$.
 
 $$
 \begin{align}
-  \textsf{Borrowed bits} &= \textsf{Network bits} - \textsf{Default mask bits} \\\\
+  \textsf{Borrowed bits} &=
+    \textsf{Network bits} - \textsf{Default mask bits} \\\\
   &= 20 - 8 &= \textbf{12} \\\\
   \textsf{Max. subnets} &= 2^\textsf{Borrowed bits} \\\\
   &= 2^{12} &= \mathbf{4,096}
@@ -136,17 +140,17 @@ dividing it into 4 bytes. The decimal values are summed up for each byte.
 $$
 \begin{align}
   \overbrace{\texttt{1101}}^\textsf{D} \overbrace{\texttt{1010}}^\textsf{A} \ . \
-  \overbrace{\texttt{0000}}^\textsf{0} \overbrace{\texttt{0001}}^\textsf{1} \ . \
-  \overbrace{\texttt{0010}}^\textsf{2} \overbrace{\texttt{0001}}^\textsf{1} \ . \
-  \overbrace{\texttt{1100}}^\textsf{C} \overbrace{\texttt{1000}}^\textsf{8} &= \\\\
-  (2^7 + 2^6 + 2^4 + 2^3 + 2^1) . \\\\
+    \overbrace{\texttt{0000}}^\textsf{0} \overbrace{\texttt{0001}}^\textsf{1} \ . \
+    \overbrace{\texttt{0010}}^\textsf{2} \overbrace{\texttt{0001}}^\textsf{1} \ . \
+    \overbrace{\texttt{1100}}^\textsf{C} \overbrace{\texttt{1000}}^\textsf{8} &= \\\\
+  2^7 + 2^6 + 2^4 + 2^3 + 2^1 . \\\\
   2^0 . \\\\
-  (2^5 + 2^0) . \\\\
-  (2^7 + 2^6 + 2^3) &= \\\\
-  (128 + 64 + 16 + 8 + 2) . \\\\
+  2^5 + 2^0 . \\\\
+  2^7 + 2^6 + 2^3 &= \\\\
+  128 + 64 + 16 + 8 + 2 . \\\\
   1 . \\\\
-  (32 + 1) . \\\\
-  (128 + 64 + 8) &= \texttt{218.1.33.200}
+  32 + 1 . \\\\
+  128 + 64 + 8 &= \texttt{218.1.33.200}
 \end{align}
 $$
 
@@ -171,12 +175,13 @@ $\texttt{/15}$ means that the first 15 bits are used for the network ID.
 $$
 \begin{align}
   \textsf{Address} &= \underbrace{112}_{64 + 32 + 16} . \texttt{0.0.0} \\\\
-  &= (2^6 + 2^5 + 2^4) . \\\\
+  &= 2^6 + 2^5 + 2^4 . \\\\
   &\quad 0 . \\\\
   &\quad 0 . \\\\
   &\quad 0 \\\\
   &= \texttt{01110000.00000000.00000000.00000000} \\\\
-  \textsf{Subnet mask (/15)} &= \underline{\texttt{11111111.11111110.00000000.00000000}} \\\\
+  \textsf{Subnet mask (/15)} &=
+    \underline{\texttt{11111111.11111110.00000000.00000000}} \\\\
   \textsf{Network address} &= \texttt{01110000.00000000.00000000.00000000}
 \end{align}
 $$
@@ -186,17 +191,20 @@ operation.
 
 $$
 \begin{align}
-  \textsf{Network address} &= \texttt{01110000.00000000.00000000.00000000} \\\\
-  \textsf{Inv. subnet mask} &= \underline{\texttt{00000000.00000001.11111111.11111111}} \\\\
-  \textsf{Broadcast address} &= \texttt{01110000.00000001.11111111.11111111} \\\\
-  &= (2^6 + 2^5 + 2^4) . \\\\
+  \textsf{Network address} &=
+    \texttt{01110000.00000000.00000000.00000000} \\\\
+  \textsf{Inv. subnet mask} &=
+    \underline{\texttt{00000000.00000001.11111111.11111111}} \\\\
+  \textsf{Broadcast address} &=
+    \texttt{01110000.00000001.11111111.11111111} \\\\
+  &= 2^6 + 2^5 + 2^4 . \\\\
   &\quad 2^0 . \\\\
-  &\quad (2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0) . \\\\
-  &\quad (2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0) \\\\
-  &= (64 + 32 + 16) . \\\\
+  &\quad 2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0 . \\\\
+  &\quad 2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0 \\\\
+  &= 64 + 32 + 16 . \\\\
   &\quad 1 . \\\\
-  &\quad (128 + 64 + 32 + 16 + 8 + 4 + 2 + 1) . \\\\
-  &\quad (128 + 64 + 32 + 16 + 8 + 4 + 2 + 1) &= \texttt{112.1.255.255}
+  &\quad 128 + 64 + 32 + 16 + 8 + 4 + 2 + 1 . \\\\
+  &\quad 128 + 64 + 32 + 16 + 8 + 4 + 2 + 1 &= \texttt{112.1.255.255}
 \end{align}
 $$
 
@@ -220,24 +228,26 @@ address $\texttt{183.70.230.23}$ and the subnet mask $\texttt{/20}$.
 $$
 \begin{align}
   \textsf{Address} &= \texttt{183.70.230.23} \\\\
-  &= (128 + 32 + 16 + 4 + 2 + 1) . \\\\
-  &\quad (64 + 4 + 2) . \\\\
-  &\quad (128 + 64 + 32 + 4 + 2) . \\\\
-  &\quad (16 + 4 + 2 + 1) \\\\
-  &= (2^7 + 2^5 + 2^4 + 2^2 + 2^1 + 2^0) . \\\\
-  &\quad (2^6 + 2^2 + 2^1) . \\\\
-  &\quad (2^7 + 2^6 + 2^5 + 2^2 + 2^1) . \\\\
-  &\quad (2^4 + 2^2 + 2^1 + 2^0) \\\\
+  &= 128 + 32 + 16 + 4 + 2 + 1 . \\\\
+  &\quad 64 + 4 + 2 . \\\\
+  &\quad 128 + 64 + 32 + 4 + 2 . \\\\
+  &\quad 16 + 4 + 2 + 1 \\\\
+  &= 2^7 + 2^5 + 2^4 + 2^2 + 2^1 + 2^0 . \\\\
+  &\quad 2^6 + 2^2 + 2^1 . \\\\
+  &\quad 2^7 + 2^6 + 2^5 + 2^2 + 2^1 . \\\\
+  &\quad 2^4 + 2^2 + 2^1 + 2^0 \\\\
   &= \texttt{10110111.01000110.11100110.00010111} \\\\
-  \textsf{Subnet mask (/20)} &= \underline{\texttt{11111111.11111111.11110000.00000000}} \\\\
-  \textsf{Network address} &= \texttt{10110111.01000110.11100000.00000000} \\\\
-  &= (2^7 + 2^5 + 2^4 + 2^2 + 2^1 + 2^0) . \\\\
-  &\quad (2^6 + 2^2 + 2^1) . \\\\
-  &\quad (2^7 + 2^6 + 2^5) . \\\\
+  \textsf{Subnet mask (/20)} &=
+    \underline{\texttt{11111111.11111111.11110000.00000000}} \\\\
+  \textsf{Network address} &=
+    \texttt{10110111.01000110.11100000.00000000} \\\\
+  &= 2^7 + 2^5 + 2^4 + 2^2 + 2^1 + 2^0 . \\\\
+  &\quad 2^6 + 2^2 + 2^1 . \\\\
+  &\quad 2^7 + 2^6 + 2^5 . \\\\
   &\quad 0 \\\\
-  &= (128 + 32 + 16 + 4 + 2 + 1) . \\\\
-  &\quad (64 + 4 + 2) . \\\\
-  &\quad (128 + 64 + 32) . \\\\
+  &= 128 + 32 + 16 + 4 + 2 + 1 . \\\\
+  &\quad 64 + 4 + 2 . \\\\
+  &\quad 128 + 64 + 32 . \\\\
   &\quad 0 &= \texttt{183.70.224.0}
 \end{align}
 $$
@@ -247,17 +257,20 @@ network address and the inverted subnet mask.
 
 $$
 \begin{align}
-  \textsf{Network address} &= \texttt{10110111.01000110.11100000.00000000} \\\\
-  \textsf{Inv. subnet mask} &= \underline{\texttt{00000000.00000000.00001111.11111111}} \\\\
-  \textsf{Broadcast address} &= \texttt{10110111.01000110.11101111.11111111} \\\\
-  &= (2^7 + 2^5 + 2^4 + 2^2 + 2^1 + 2^0) . \\\\
-  &\quad (2^6 + 2^2 + 2^1) . \\\\
-  &\quad (2^7 + 2^6 + 2^5 + 2^3 + 2^2 + 2^1 + 2^0) . \\\\
-  &\quad (2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0) \\\\
-  &= (128 + 32 + 16 + 4 + 2 + 1) . \\\\
-  &\quad (64 + 4 + 2) . \\\\
-  &\quad (128 + 64 + 32 + 8 + 4 + 2 + 1) . \\\\
-  &\quad (128 + 64 + 32 + 16 + 8 + 4 + 2 + 1) &= \texttt{183.70.239.255}
+  \textsf{Network address} &=
+    \texttt{10110111.01000110.11100000.00000000} \\\\
+  \textsf{Inv. subnet mask} &=
+    \underline{\texttt{00000000.00000000.00001111.11111111}} \\\\
+  \textsf{Broadcast address} &=
+    \texttt{10110111.01000110.11101111.11111111} \\\\
+  &= 2^7 + 2^5 + 2^4 + 2^2 + 2^1 + 2^0 . \\\\
+  &\quad 2^6 + 2^2 + 2^1 . \\\\
+  &\quad 2^7 + 2^6 + 2^5 + 2^3 + 2^2 + 2^1 + 2^0 . \\\\
+  &\quad 2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0 \\\\
+  &= 128 + 32 + 16 + 4 + 2 + 1 . \\\\
+  &\quad 64 + 4 + 2 . \\\\
+  &\quad 128 + 64 + 32 + 8 + 4 + 2 + 1 . \\\\
+  &\quad 128 + 64 + 32 + 16 + 8 + 4 + 2 + 1 &= \texttt{183.70.239.255}
 \end{align}
 $$
 
@@ -275,8 +288,9 @@ $$
 
 ## Problem 7
 
-> The network $\texttt{126.154.24.0/21}$ is divided into $32 \ \textsf{subnets}$.
-  Can the following IP addresses be assigned to hosts? Explain your answers.
+> The network $\texttt{126.154.24.0/21}$ is divided into
+  $32 \ \textsf{subnets}$. Can the following IP addresses be assigned to hosts?
+  Explain your answers.
 >
 > 1.  $\texttt{126.154.24.0}$
 > 1.  $\texttt{126.154.24.128}$
@@ -292,7 +306,8 @@ $$
   \textsf{Subnets} &= 2^\textsf{Borrowed bits} \\\\
   32 &= 2^\textsf{Borrowed bits} \\\\
   \textsf{Borrowed bits} &= 5 \ \textsf{bits} \\\\
-  \textsf{New subnet mask} &= \textsf{Original subnet} + \textsf{Borrowed bits} \\\\
+  \textsf{New subnet mask} &=
+    \textsf{Original subnet} + \textsf{Borrowed bits} \\\\
   &= /21 + 5 \ \textsf{bits} &= \mathbf{/26}
 \end{align}
 $$
@@ -383,22 +398,23 @@ address and the subnet mask $\texttt{/18}$.
 $$
 \begin{align}
   \textsf{Address} &= \texttt{123.0.0.0} \\\\
-  &= (64 + 32 + 16 + 8 + 2 + 1) . \\\\
+  &= 64 + 32 + 16 + 8 + 2 + 1 . \\\\
   &\quad 0 . \\\\
   &\quad 0 . \\\\
   &\quad 0 \\\\
-  &= (2^6 + 2^5 + 2^4 + 2^3 + 2^1 + 2^0) . \\\\
+  &= 2^6 + 2^5 + 2^4 + 2^3 + 2^1 + 2^0 . \\\\
   &\quad 0 . \\\\
   &\quad 0 . \\\\
   &\quad 0 \\\\
   &= \texttt{01111011.00000000.00000000.00000000} \\\\
-  \textsf{Subnet mask (/18)} &= \underline{\texttt{11111111.11111111.11000000.00000000}} \\\\
+  \textsf{Subnet mask (/18)} &=
+    \underline{\texttt{11111111.11111111.11000000.00000000}} \\\\
   \textsf{Network address} &= \texttt{01111011.00000000.00000000.00000000} \\\\
-  &= (2^6 + 2^5 + 2^4 + 2^3 + 2^1 + 2^0) . \\\\
+  &= 2^6 + 2^5 + 2^4 + 2^3 + 2^1 + 2^0 . \\\\
   &\quad 0 . \\\\
   &\quad 0 . \\\\
   &\quad 0 \\\\
-  &= (64 + 32 + 16 + 8 + 2 + 1) . \\\\
+  &= 64 + 32 + 16 + 8 + 2 + 1 . \\\\
   &\quad 0 . \\\\
   &\quad 0 . \\\\
   &\quad 0 &= \texttt{123.0.0.0}
@@ -410,17 +426,20 @@ address and the inverted subnet mask.
 
 $$
 \begin{align}
-  \textsf{Network address} &= \texttt{01111011.00000000.00000000.00000000} \\\\
-  \textsf{Inv. subnet mask} &= \underline{\texttt{00000000.00000000.00111111.11111111}} \\\\
-  \textsf{Broadcast address} &= \texttt{01111011.00000000.00111111.11111111} \\\\
-  &= (2^6 + 2^5 + 2^4 + 2^3 + 2^1 + 2^0) . \\\\
+  \textsf{Network address} &=
+    \texttt{01111011.00000000.00000000.00000000} \\\\
+  \textsf{Inv. subnet mask} &=
+    \underline{\texttt{00000000.00000000.00111111.11111111}} \\\\
+  \textsf{Broadcast address} &=
+    \texttt{01111011.00000000.00111111.11111111} \\\\
+  &= 2^6 + 2^5 + 2^4 + 2^3 + 2^1 + 2^0 . \\\\
   &\quad 0 . \\\\
-  &\quad (2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0) . \\\\
-  &\quad (2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0) \\\\
-  &= (64 + 32 + 16 + 8 + 2 + 1) . \\\\
+  &\quad 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0 . \\\\
+  &\quad 2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0 \\\\
+  &= 64 + 32 + 16 + 8 + 2 + 1 . \\\\
   &\quad 0 . \\\\
-  &\quad (32 + 16 + 8 + 4 + 2 + 1) . \\\\
-  &\quad (128 + 64 + 32 + 16 + 8 + 4 + 2 + 1) &= \texttt{123.0.63.255}
+  &\quad 32 + 16 + 8 + 4 + 2 + 1 . \\\\
+  &\quad 128 + 64 + 32 + 16 + 8 + 4 + 2 + 1 &= \texttt{123.0.63.255}
 \end{align}
 $$
 
@@ -450,10 +469,14 @@ Convert the integer back to dotted decimal notation.
 
 $$
 \begin{align}
-  \textsf{current} &= 2,063,599,716 && \textsf{Byte \#}4 = 2,063,599,716 \mod 256 &= \mathbf{100} \\\\
-  &= \left\lfloor \frac{2,063,599,716}{256} \right\rfloor = 8,060,936 && \textsf{Byte \#}3 = 8,060,936 \mod 256 &= \mathbf{8} \\\\
-  &= \left\lfloor \frac{8,060,936}{256} \right\rfloor = 31,488 && \textsf{Byte \#}2 = 31,488 \mod 256 &= \mathbf{0} \\\\
-  &= \left\lfloor \frac{31,488}{256} \right\rfloor = 123 && \textsf{Byte \#}1 &= \mathbf{123} \\\\
+  \textsf{Current} &= 2,063,599,716 &&
+    \textsf{Byte \#}4 = 2,063,599,716 \mod 256 &= \mathbf{100} \\\\
+  &= \left\lfloor \frac{2,063,599,716}{256} \right\rfloor = 8,060,936 &&
+    \textsf{Byte \#}3 = 8,060,936 \mod 256 &= \mathbf{8} \\\\
+  &= \left\lfloor \frac{8,060,936}{256} \right\rfloor = 31,488 &&
+    \textsf{Byte \#}2 = 31,488 \mod 256 &= \mathbf{0} \\\\
+  &= \left\lfloor \frac{31,488}{256} \right\rfloor = 123 &&
+    \textsf{Byte \#}1 &= \mathbf{123} \\\\
   & && 2149 \textsf{th address} = \texttt{123.0.8.100} & \hookleftarrow
 \end{align}
 $$
@@ -492,7 +515,8 @@ $$
   &\quad (127 \times 256) + \\\\
   &\quad 230 \\\\
   &= 3,137,339,392 + 6,094,848 + 32,512 + 230 &= \mathbf{3,143,466,982} \\\\
-  \textsf{Addresses between} &= \textsf{Address \#} 2 - \textsf{Address \#} 1 \\\\
+  \textsf{Addresses between} &=
+    \textsf{Address \#} 2 - \textsf{Address \#} 1 \\\\
   &= 3,143,466,982 - 3,143,440,737 &= \mathbf{26,245} \\\\
   \textsf{Usable addresses} &= \textsf{Addresses between} - 2 \\\\
   &= 26,245 - 2 &= \mathbf{26,243}
@@ -514,7 +538,7 @@ total number of addresses in the network.
 $$
 \begin{align}
   \textsf{Total addresses} &= 2^\textsf{Host bits} \\\\
-  &= 2^{16} &= \mathbf{65,536} \\\\
+  &= 2^{16} &= \mathbf{65,536}
 \end{align}
 $$
 
@@ -553,48 +577,52 @@ $$
 \begin{align}
   \textsf{Subnet host bits \#} 1 &= \log_2 512 &= \mathbf{9} \\\\
   \textsf{Subnet network bits \#} 1 &= 32 - 9 &= \mathbf{23} \\\\
-  \textsf{Subnet mask \#} 1 \ \textsf{(/23)} &= \texttt{11111111.11111111.11111110.00000000} \\\\
-  &= (2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0) . \\\\
-  &\quad (2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0) . \\\\
-  &\quad (2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1) . \\\\
+  \textsf{Subnet mask \#} 1 \ \textsf{(/23)} &=
+    \texttt{11111111.11111111.11111110.00000000} \\\\
+  &= 2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0 . \\\\
+  &\quad 2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0 . \\\\
+  &\quad 2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 . \\\\
   &\quad 0 \\\\
-  &= (128 + 64 + 32 + 16 + 8 + 4 + 2 + 1) . \\\\
-  &\quad (128 + 64 + 32 + 16 + 8 + 4 + 2 + 1) . \\\\
-  &\quad (128 + 64 + 32 + 16 + 8 + 4 + 2) . \\\\
+  &= 128 + 64 + 32 + 16 + 8 + 4 + 2 + 1 . \\\\
+  &\quad 128 + 64 + 32 + 16 + 8 + 4 + 2 + 1 . \\\\
+  &\quad 128 + 64 + 32 + 16 + 8 + 4 + 2 . \\\\
   &\quad 0 &= \texttt{255.255.254.0} \\\\
   \textsf{Subnet host bits \#} 2–3 &= \log_2 128 &= \mathbf{7} \\\\
   \textsf{Subnet network bits \#} 2–3 &= 32 - 7 &= \mathbf{25} \\\\
-  \textsf{Subnet mask \#} 2–3 \ \textsf{(/25)} &= \texttt{11111111.11111111.11111111.10000000} \\\\
-  &= (2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0) . \\\\
-  &\quad (2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0) . \\\\
-  &\quad (2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0) . \\\\
+  \textsf{Subnet mask \#} 2–3 \ \textsf{(/25)} &=
+    \texttt{11111111.11111111.11111111.10000000} \\\\
+  &= 2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0 . \\\\
+  &\quad 2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0 . \\\\
+  &\quad 2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0 . \\\\
   &\quad 2^7 \\\\
-  &= (128 + 64 + 32 + 16 + 8 + 4 + 2 + 1) . \\\\
-  &\quad (128 + 64 + 32 + 16 + 8 + 4 + 2 + 1) . \\\\
-  &\quad (128 + 64 + 32 + 16 + 8 + 4 + 2 + 1) . \\\\
+  &= 128 + 64 + 32 + 16 + 8 + 4 + 2 + 1 . \\\\
+  &\quad 128 + 64 + 32 + 16 + 8 + 4 + 2 + 1 . \\\\
+  &\quad 128 + 64 + 32 + 16 + 8 + 4 + 2 + 1 . \\\\
   &\quad 128 &= \texttt{255.255.255.128} \\\\
   \textsf{Subnet host bits \#} 4–5 &= \log_2 64 &= \mathbf{6} \\\\
   \textsf{Subnet network bits \#} 4–5 &= 32 - 6 &= \mathbf{26} \\\\
-  \textsf{Subnet mask \#} 4–5 \ \textsf{(/26)} &= \texttt{11111111.11111111.11111111.11000000} \\\\
-  &= (2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0) . \\\\
-  &\quad (2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0) . \\\\
-  &\quad (2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0) . \\\\
-  &\quad (2^7 + 2^6) \\\\
-  &= (128 + 64 + 32 + 16 + 8 + 4 + 2 + 1) . \\\\
-  &\quad (128 + 64 + 32 + 16 + 8 + 4 + 2 + 1) . \\\\
-  &\quad (128 + 64 + 32 + 16 + 8 + 4 + 2 + 1) . \\\\
-  &\quad (128 + 64) &= \texttt{255.255.255.192} \\\\
+  \textsf{Subnet mask \#} 4–5 \ \textsf{(/26)} &=
+    \texttt{11111111.11111111.11111111.11000000} \\\\
+  &= 2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0 . \\\\
+  &\quad 2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0 . \\\\
+  &\quad 2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0 . \\\\
+  &\quad 2^7 + 2^6 \\\\
+  &= 128 + 64 + 32 + 16 + 8 + 4 + 2 + 1 . \\\\
+  &\quad 128 + 64 + 32 + 16 + 8 + 4 + 2 + 1 . \\\\
+  &\quad 128 + 64 + 32 + 16 + 8 + 4 + 2 + 1 . \\\\
+  &\quad 128 + 64 &= \texttt{255.255.255.192} \\\\
   \textsf{Subnet host bits \#} 6–7 &= \log_2 32 &= \mathbf{5} \\\\
   \textsf{Subnet network bits \#} 6–7 &= 32 - 5 &= \mathbf{27} \\\\
-  \textsf{Subnet mask \#} 6–7 \ \textsf{(/27)} &= \texttt{11111111.11111111.11111111.11100000} \\\\
-  &= (2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0) . \\\\
-  &\quad (2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0) . \\\\
-  &\quad (2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0) . \\\\
-  &\quad (2^7 + 2^6 + 2^5) \\\\
-  &= (128 + 64 + 32 + 16 + 8 + 4 + 2 + 1) . \\\\
-  &\quad (128 + 64 + 32 + 16 + 8 + 4 + 2 + 1) . \\\\
-  &\quad (128 + 64 + 32 + 16 + 8 + 4 + 2 + 1) . \\\\
-  &\quad (128 + 64 + 32) &= \texttt{255.255.255.224}
+  \textsf{Subnet mask \#} 6–7 \ \textsf{(/27)} &=
+    \texttt{11111111.11111111.11111111.11100000} \\\\
+  &= 2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0 . \\\\
+  &\quad 2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0 . \\\\
+  &\quad 2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0 . \\\\
+  &\quad 2^7 + 2^6 + 2^5 \\\\
+  &= 128 + 64 + 32 + 16 + 8 + 4 + 2 + 1 . \\\\
+  &\quad 128 + 64 + 32 + 16 + 8 + 4 + 2 + 1 . \\\\
+  &\quad 128 + 64 + 32 + 16 + 8 + 4 + 2 + 1 . \\\\
+  &\quad 128 + 64 + 32 &= \texttt{255.255.255.224}
 \end{align}
 $$
 
@@ -603,14 +631,22 @@ from the network address $\texttt{25.4.32.0}$.
 
 $$
 \begin{align}
-  \textsf{current} &= \texttt{25.4.32.0} \to \texttt{25.4.32.255} && \textsf{Subnet \#} 1 &= 512 - 256 & \\\\
-  &= \texttt{25.4.33.0} \to \texttt{25.4.33.255} && &= 256 - 256 &= \mathbf{0} \\\\
-  &= \texttt{25.4.34.0} \to \texttt{25.4.34.127} && \textsf{Subnet \#} 2 &= 128 - 128 &= \mathbf{0} \\\\
-  &= \texttt{25.4.34.128} \to \texttt{25.4.34.255} && \textsf{Subnet \#} 3 &= 128 - 128 &= \mathbf{0} \\\\
-  &= \texttt{25.4.35.0} \to \texttt{25.4.35.63} && \textsf{Subnet \#} 4 &= 64 - 64 &= \mathbf{0} \\\\
-  &= \texttt{25.4.35.64} \to \texttt{25.4.35.127} && \textsf{Subnet \#} 5 &= 64 - 64 &= \mathbf{0} \\\\
-  &= \texttt{25.4.35.128} \to \texttt{25.4.35.159} && \textsf{Subnet \#} 6 &= 32 - 32 &= \mathbf{0} \\\\
-  &= \texttt{25.4.35.160} \to \texttt{25.4.35.191} && \textsf{Subnet \#} 7 &= 32 - 32 &= \mathbf{0}
+  \textsf{current} &= \texttt{25.4.32.0} \to \texttt{25.4.32.255} &&
+    \textsf{Subnet \#} 1 &= 512 - 256 & \\\\
+  &= \texttt{25.4.33.0} \to \texttt{25.4.33.255} &&
+    &= 256 - 256 &= \mathbf{0} \\\\
+  &= \texttt{25.4.34.0} \to \texttt{25.4.34.127} &&
+    \textsf{Subnet \#} 2 &= 128 - 128 &= \mathbf{0} \\\\
+  &= \texttt{25.4.34.128} \to \texttt{25.4.34.255} &&
+    \textsf{Subnet \#} 3 &= 128 - 128 &= \mathbf{0} \\\\
+  &= \texttt{25.4.35.0} \to \texttt{25.4.35.63} &&
+    \textsf{Subnet \#} 4 &= 64 - 64 &= \mathbf{0} \\\\
+  &= \texttt{25.4.35.64} \to \texttt{25.4.35.127} &&
+    \textsf{Subnet \#} 5 &= 64 - 64 &= \mathbf{0} \\\\
+  &= \texttt{25.4.35.128} \to \texttt{25.4.35.159} &&
+    \textsf{Subnet \#} 6 &= 32 - 32 &= \mathbf{0} \\\\
+  &= \texttt{25.4.35.160} \to \texttt{25.4.35.191} &&
+    \textsf{Subnet \#} 7 &= 32 - 32 &= \mathbf{0}
 \end{align}
 $$
 
@@ -641,8 +677,8 @@ bits so that the total number of addresses is at least $72$.
 
 $$
 \begin{align}
-  n &= 6 && 2^6 = 64 < 72 & \textsf{NO} \\\\
-  n &= 7 && 2^7 = 128 \geq 72 & \textbf{YES}
+  n &= 6 && 2^6 = 64 < 72 && \textsf{NO} \\\\
+  n &= 7 && 2^7 = 128 \geq 72 && \textbf{YES}
 \end{align}
 $$
 
@@ -662,41 +698,41 @@ using AND and OR operations, respectively.
 $$
 \begin{align}
   \textsf{Address} &= \texttt{154.101.43.163} \\\\
-  &= (128 + 16 + 8 + 2) . \\\\
-  &\quad (64 + 32 + 4 + 1) . \\\\
-  &\quad (32 + 8 + 2 + 1) . \\\\
-  &\quad (128 + 32 + 2 + 1) \\\\
-  &= (2^7 + 2^4 + 2^3 + 2^1) . \\\\
-  &\quad (2^6 + 2^5 + 2^2 + 2^0) . \\\\
-  &\quad (2^5 + 2^3 + 2^1 + 2^0) . \\\\
-  &\quad (2^7 + 2^5 + 2^1 + 2^0) \\\\
+  &= 128 + 16 + 8 + 2 . \\\\
+  &\quad 64 + 32 + 4 + 1 . \\\\
+  &\quad 32 + 8 + 2 + 1 . \\\\
+  &\quad 128 + 32 + 2 + 1 \\\\
+  &= 2^7 + 2^4 + 2^3 + 2^1 . \\\\
+  &\quad 2^6 + 2^5 + 2^2 + 2^0 . \\\\
+  &\quad 2^5 + 2^3 + 2^1 + 2^0 . \\\\
+  &\quad 2^7 + 2^5 + 2^1 + 2^0 \\\\
   &= \texttt{10011010.01100101.00101011.10100011} \\\\
-  \textsf{Subnet mask (/25)} &= \underline{\texttt{11111111.11111111.11111111.10000000}} \\\\
-  \textsf{Network address} &= \texttt{10011010.01100101.00101011.10000000} \\\\
-  &= (2^7 + 2^4 + 2^3 + 2^1) . \\\\
-  &\quad (2^6 + 2^5 + 2^2 + 2^0) . \\\\
-  &\quad (2^5 + 2^3 + 2^1 + 2^0) . \\\\
+  \textsf{Subnet mask (/25)} &=
+    \underline{\texttt{11111111.11111111.11111111.10000000}} \\\\
+  \textsf{Network address} &=
+    \texttt{10011010.01100101.00101011.10000000} \\\\
+  &= 2^7 + 2^4 + 2^3 + 2^1 . \\\\
+  &\quad 2^6 + 2^5 + 2^2 + 2^0 . \\\\
+  &\quad 2^5 + 2^3 + 2^1 + 2^0 . \\\\
   &\quad 2^7 \\\\
-  &= (128 + 16 + 8 + 2) . \\\\
-  &\quad (64 + 32 + 4 + 1) . \\\\
-  &\quad (32 + 8 + 2 + 1) . \\\\
-  &\quad 128 &= \texttt{154.101.43.128}
-\end{align}
-$$
-
-$$
-\begin{align}
-  \textsf{Network address} &= \texttt{10011010.01100101.00101011.10000000} \\\\
-  \textsf{Inv. subnet mask} &= \underline{\texttt{00000000.00000000.00000000.01111111}} \\\\
-  \textsf{Broadcast address} &= \texttt{10011010.01100101.00101011.11111111} \\\\
-  &= (2^7 + 2^4 + 2^3 + 2^1) . \\\\
-  &\quad (2^6 + 2^5 + 2^2 + 2^0) . \\\\
-  &\quad (2^5 + 2^3 + 2^1 + 2^0) . \\\\
-  &\quad (2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0) \\\\
-  &= (128 + 16 + 8 + 2) . \\\\
-  &\quad (64 + 32 + 4 + 1) . \\\\
-  &\quad (32 + 8 + 2 + 1) . \\\\
-  &\quad (128 + 64 + 32 + 16 + 8 + 4 + 2 + 1) &= \texttt{154.101.43.255}
+  &= 128 + 16 + 8 + 2 . \\\\
+  &\quad 64 + 32 + 4 + 1 . \\\\
+  &\quad 32 + 8 + 2 + 1 . \\\\
+  &\quad 128 &= \texttt{154.101.43.128} \\\\
+  \textsf{Network address} &=
+    \texttt{10011010.01100101.00101011.10000000} \\\\
+  \textsf{Inv. subnet mask} &=
+    \underline{\texttt{00000000.00000000.00000000.01111111}} \\\\
+  \textsf{Broadcast address} &=
+    \texttt{10011010.01100101.00101011.11111111} \\\\
+  &= 2^7 + 2^4 + 2^3 + 2^1 . \\\\
+  &\quad 2^6 + 2^5 + 2^2 + 2^0 . \\\\
+  &\quad 2^5 + 2^3 + 2^1 + 2^0 . \\\\
+  &\quad 2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0 \\\\
+  &= 128 + 16 + 8 + 2 . \\\\
+  &\quad 64 + 32 + 4 + 1 . \\\\
+  &\quad 32 + 8 + 2 + 1 . \\\\
+  &\quad 128 + 64 + 32 + 16 + 8 + 4 + 2 + 1 &= \texttt{154.101.43.255}
 \end{align}
 $$
 
@@ -706,7 +742,8 @@ and broadcast addresses.
 
 $$
 \begin{align}
-  \textsf{Total addresses} &= \textsf{Required addresses} + \textsf{Unused addresses} + 2 \\\\
+  \textsf{Total addresses} &=
+    \textsf{Required addresses} + \textsf{Unused addresses} + 2 \\\\
   128 &= 72 + \textsf{Unused addresses} + 2 \\\\
   \textsf{Unused addresses} &= 128 - 72 - 2 \\\\
   &= 128 - 74 &= \mathbf{54}
@@ -748,85 +785,93 @@ each interface.
 $$
 \begin{align}
   \textsf{M0 network address} &= \texttt{187.123.224.0} \\\\
-  &= (128 + 32 + 16 + 8 + 2 + 1) . \\\\
-  &\quad (64 + 32 + 16 + 8 + 2 + 1) . \\\\
-  &\quad (128 + 64 + 32) . \\\\
+  &= 128 + 32 + 16 + 8 + 2 + 1 . \\\\
+  &\quad 64 + 32 + 16 + 8 + 2 + 1 . \\\\
+  &\quad 128 + 64 + 32 . \\\\
   &\quad 0 \\\\
-  &= (2^7 + 2^5 + 2^4 + 2^3 + 2^1 + 2^0) . \\\\
-  &\quad (2^6 + 2^5 + 2^4 + 2^3 + 2^1 + 2^0) . \\\\
-  &\quad (2^7 + 2^6 + 2^5) . \\\\
+  &= 2^7 + 2^5 + 2^4 + 2^3 + 2^1 + 2^0 . \\\\
+  &\quad 2^6 + 2^5 + 2^4 + 2^3 + 2^1 + 2^0 . \\\\
+  &\quad 2^7 + 2^6 + 2^5 . \\\\
   &\quad 0 \\\\
   &= \texttt{10111011.01111011.11100000.00000000} \\\\
-  \textsf{M0 inv. subnet mask (/25)} &= \underline{\texttt{00000000.00000000.00000000.01111111}} \\\\
-  \textsf{M0 broadcast address} &= \texttt{10111011.01111011.11100000.01111111} \\\\
-  &= (2^7 + 2^5 + 2^4 + 2^3 + 2^1 + 2^0) . \\\\
-  &\quad (2^6 + 2^5 + 2^4 + 2^3 + 2^1 + 2^0) . \\\\
-  &\quad (2^7 + 2^6 + 2^5) . \\\\
-  &\quad (2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0) \\\\
-  &= (128 + 32 + 16 + 8 + 2 + 1) . \\\\
-  &\quad (64 + 32 + 16 + 8 + 2 + 1) . \\\\
-  &\quad (128 + 64 + 32) . \\\\
-  &\quad (64 + 32 + 16 + 8 + 4 + 2 + 1) &= \texttt{187.123.224.127} \\\\
+  \textsf{M0 inv. subnet mask (/25)} &=
+    \underline{\texttt{00000000.00000000.00000000.01111111}} \\\\
+  \textsf{M0 broadcast address} &=
+    \texttt{10111011.01111011.11100000.01111111} \\\\
+  &= 2^7 + 2^5 + 2^4 + 2^3 + 2^1 + 2^0 . \\\\
+  &\quad 2^6 + 2^5 + 2^4 + 2^3 + 2^1 + 2^0 . \\\\
+  &\quad 2^7 + 2^6 + 2^5 . \\\\
+  &\quad 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0 \\\\
+  &= 128 + 32 + 16 + 8 + 2 + 1 . \\\\
+  &\quad 64 + 32 + 16 + 8 + 2 + 1 . \\\\
+  &\quad 128 + 64 + 32 . \\\\
+  &\quad 64 + 32 + 16 + 8 + 4 + 2 + 1 &= \texttt{187.123.224.127} \\\\
   \textsf{M1 network address} &= \texttt{201.4.0.0} \\\\
-  &= (128 + 64 + 8 + 1) . \\\\
+  &= 128 + 64 + 8 + 1 . \\\\
   &\quad 4 . \\\\
   &\quad 0 . \\\\
   &\quad 0 . \\\\
-  &= (2^7 + 2^6 + 2^3 + 2^0) . \\\\
+  &= 2^7 + 2^6 + 2^3 + 2^0 . \\\\
   &\quad 2^2 . \\\\
   &\quad 0 . \\\\
   &\quad 0 . \\\\
   &= \texttt{11001001.00000100.00000000.00000000} \\\\
-  \textsf{M1 inv. subnet mask (/18)} &= \underline{\texttt{00000000.00000000.00111111.11111111}} \\\\
-  \textsf{M1 broadcast address} &= \texttt{11001001.00000100.00111111.11111111} \\\\
-  &= (2^7 + 2^6 + 2^3 + 2^0) . \\\\
+  \textsf{M1 inv. subnet mask (/18)} &=
+    \underline{\texttt{00000000.00000000.00111111.11111111}} \\\\
+  \textsf{M1 broadcast address} &=
+    \texttt{11001001.00000100.00111111.11111111} \\\\
+  &= 2^7 + 2^6 + 2^3 + 2^0 . \\\\
   &\quad 2^2 . \\\\
-  &\quad (2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0) . \\\\
-  &\quad (2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0) . \\\\
-  &= (128 + 64 + 8 + 1) . \\\\
+  &\quad 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0 . \\\\
+  &\quad 2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0 . \\\\
+  &= 128 + 64 + 8 + 1 . \\\\
   &\quad 4 . \\\\
-  &\quad (32 + 16 + 8 + 4 + 2 + 1) . \\\\
-  &\quad (128 + 64 + 32 + 16 + 8 + 4 + 2 + 1) &= \texttt{201.4.63.255} \\\\
+  &\quad 32 + 16 + 8 + 4 + 2 + 1 . \\\\
+  &\quad 128 + 64 + 32 + 16 + 8 + 4 + 2 + 1 &= \texttt{201.4.63.255} \\\\
   \textsf{M2 network address} &= \texttt{201.4.128.0} \\\\
-  &= (128 + 64 + 8 + 1) . \\\\
+  &= 128 + 64 + 8 + 1 . \\\\
   &\quad 4 . \\\\
   &\quad 128 . \\\\
   &\quad 0 . \\\\
-  &= (2^7 + 2^6 + 2^3 + 2^0) . \\\\
+  &= 2^7 + 2^6 + 2^3 + 2^0 . \\\\
   &\quad 2^2 . \\\\
   &\quad 2^7 . \\\\
   &\quad 0 . \\\\
   &= \texttt{11001001.00000100.10000000.00000000} \\\\
-  \textsf{M2 inv. subnet mask (/17)} &= \underline{\texttt{00000000.00000000.01111111.11111111}} \\\\
-  \textsf{M2 broadcast address} &= \texttt{11001001.00000100.11111111.11111111} \\\\
-  &= (2^7 + 2^6 + 2^3 + 2^0) . \\\\
+  \textsf{M2 inv. subnet mask (/17)} &=
+    \underline{\texttt{00000000.00000000.01111111.11111111}} \\\\
+  \textsf{M2 broadcast address} &=
+    \texttt{11001001.00000100.11111111.11111111} \\\\
+  &= 2^7 + 2^6 + 2^3 + 2^0 . \\\\
   &\quad 2^2 . \\\\
-  &\quad (2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0) . \\\\
-  &\quad (2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0) \\\\
-  &= (128 + 64 + 8 + 1) . \\\\
+  &\quad 2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0 . \\\\
+  &\quad 2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0 \\\\
+  &= 128 + 64 + 8 + 1 . \\\\
   &\quad 4 . \\\\
-  &\quad (128 + 64 + 32 + 16 + 8 + 4 + 2 + 1) . \\\\
-  &\quad (128 + 64 + 32 + 16 + 8 + 4 + 2 + 1) &= \texttt{201.4.255.255} \\\\
+  &\quad 128 + 64 + 32 + 16 + 8 + 4 + 2 + 1 . \\\\
+  &\quad 128 + 64 + 32 + 16 + 8 + 4 + 2 + 1 &= \texttt{201.4.255.255} \\\\
   \textsf{M3 network address} &= \texttt{180.74.0.0} \\\\
-  &= (128 + 32 + 16 + 4) . \\\\
-  &\quad (64 + 8 + 2) . \\\\
+  &= 128 + 32 + 16 + 4 . \\\\
+  &\quad 64 + 8 + 2 . \\\\
   &\quad 0 . \\\\
   &\quad 0 . \\\\
-  &= (2^7 + 2^5 + 2^4 + 2^2) . \\\\
-  &\quad (2^6 + 2^3 + 2^1) . \\\\
+  &= 2^7 + 2^5 + 2^4 + 2^2 . \\\\
+  &\quad 2^6 + 2^3 + 2^1 . \\\\
   &\quad 0 . \\\\
   &\quad 0 . \\\\
   &= \texttt{10110100.01001010.00000000.00000000} \\\\
-  \textsf{M3 inv. subnet mask (/15)} &= \underline{\texttt{00000000.00000001.11111111.11111111}} \\\\
-  \textsf{M3 broadcast address} &= \texttt{10110100.01001011.11111111.11111111} \\\\
-  &= (2^7 + 2^5 + 2^4 + 2^2) . \\\\
-  &\quad (2^6 + 2^3 + 2^1 + 2^0) . \\\\
-  &\quad (2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0) . \\\\
-  &\quad (2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0) \\\\
-  &= (128 + 32 + 16 + 4) . \\\\
-  &\quad (64 + 8 + 2 + 1) . \\\\
-  &\quad (128 + 64 + 32 + 16 + 8 + 4 + 2 + 1) . \\\\
-  &\quad (128 + 64 + 32 + 16 + 8 + 4 + 2 + 1) &= \texttt{180.75.255.255}
+  \textsf{M3 inv. subnet mask (/15)} &=
+    \underline{\texttt{00000000.00000001.11111111.11111111}} \\\\
+  \textsf{M3 broadcast address} &=
+    \texttt{10110100.01001011.11111111.11111111} \\\\
+  &= 2^7 + 2^5 + 2^4 + 2^2 . \\\\
+  &\quad 2^6 + 2^3 + 2^1 + 2^0 . \\\\
+  &\quad 2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0 . \\\\
+  &\quad 2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0 \\\\
+  &= 128 + 32 + 16 + 4 . \\\\
+  &\quad 64 + 8 + 2 + 1 . \\\\
+  &\quad 128 + 64 + 32 + 16 + 8 + 4 + 2 + 1 . \\\\
+  &\quad 128 + 64 + 32 + 16 + 8 + 4 + 2 + 1 &= \texttt{180.75.255.255}
 \end{align}
 $$
 
@@ -907,12 +952,12 @@ each subblock.
 
 $$
 \begin{align}
-  n &= 6 && 2^6 = 64 < 80 & \textsf{NO} \\\\
-  n &= 7 && 2^7 = 128 \geq 80 & \textbf{YES} \\\\
-  n &= 8 && 2^8 = 256 < 288 & \textsf{NO} \\\\
-  n &= 9 && 2^9 = 512 \geq 288 & \textbf{YES} \\\\
-  & && 2^9 = 512 < 768 & \textsf{NO} \\\\
-  n &= 10 && 2^{10} = 1,024 \geq 768 & \textbf{YES}
+  n &= 6 && 2^6 = 64 < 80 && \textsf{NO} \\\\
+  n &= 7 && 2^7 = 128 \geq 80 && \textbf{YES} \\\\
+  n &= 8 && 2^8 = 256 < 288 && \textsf{NO} \\\\
+  n &= 9 && 2^9 = 512 \geq 288 && \textbf{YES} \\\\
+  & && 2^9 = 512 < 768 && \textsf{NO} \\\\
+  n &= 10 && 2^{10} = 1,024 \geq 768 && \textbf{YES}
 \end{align}
 $$
 
@@ -935,13 +980,21 @@ broadcast addresses, there is no further subtraction.
 
 $$
 \begin{align}
-  \textsf{Block \#1 total addresses} &= \textsf{Block \#1 required addresses} - \textsf{Block \#1 unused addresses} \\\\
+  \textsf{Block \#1 total addresses} &=
+    \textsf{Block \#1 required addresses} -
+    \textsf{Block \#1 unused addresses} \\\\
   1,024 &= 768 - \textsf{Block \#1 unused addresses} \\\\
-  \textsf{Block \#1 unused addresses} &= 1,024 - 768 &= \mathbf{256} \\\\
-  \textsf{Block \#2 total addresses} &= \textsf{Block \#2 required addresses} - \textsf{Block \#2 unused addresses} \\\\
+  \textsf{Block \#1 unused addresses} &=
+    1,024 - 768 &= \mathbf{256} \\\\
+  \textsf{Block \#2 total addresses} &=
+    \textsf{Block \#2 required addresses} -
+    \textsf{Block \#2 unused addresses} \\\\
   512 &= 288 - \textsf{Block \#2 unused addresses} \\\\
-  \textsf{Block \#2 unused addresses} &= 512 - 288 &= \mathbf{224} \\\\
-  \textsf{Block \#3 total addresses} &= \textsf{Block \#3 required addresses} - \textsf{Block \#3 unused addresses} \\\\
+  \textsf{Block \#2 unused addresses} &=
+    512 - 288 &= \mathbf{224} \\\\
+  \textsf{Block \#3 total addresses} &=
+    \textsf{Block \#3 required addresses} -
+    \textsf{Block \#3 unused addresses} \\\\
   128 &= 80 - \textsf{Block \#3 unused addresses} \\\\
   \textsf{Block \#3 unused addresses} &= 128 - 80 &= \mathbf{48}
 \end{align}
@@ -954,36 +1007,39 @@ $$
 \begin{align}
   \textsf{Block \#1 network bits} &= 32 - \textsf{Block \#1 host bits} \\\\
   &= 32 - 10 &= \mathbf{22} \\\\
-  \textsf{Block \#1 subnet mask (/22)} &= \texttt{1111111.11111111.11111100.00000000} \\\\
-  &= (2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0) . \\\\
-  &\quad (2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0) . \\\\
-  &\quad (2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2) . \\\\
+  \textsf{Block \#1 subnet mask (/22)} &=
+    \texttt{1111111.11111111.11111100.00000000} \\\\
+  &= 2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0 . \\\\
+  &\quad 2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0 . \\\\
+  &\quad 2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 . \\\\
   &\quad 0 . \\\\
-  &= (128 + 64 + 32 + 16 + 8 + 4 + 2 + 1) . \\\\
-  &\quad (128 + 64 + 32 + 16 + 8 + 4 + 2 + 1) . \\\\
-  &\quad (128 + 64 + 32 + 16 + 8 + 4) . \\\\
+  &= 128 + 64 + 32 + 16 + 8 + 4 + 2 + 1 . \\\\
+  &\quad 128 + 64 + 32 + 16 + 8 + 4 + 2 + 1 . \\\\
+  &\quad 128 + 64 + 32 + 16 + 8 + 4 . \\\\
   &\quad 0 &= \texttt{255.255.252.0} \\\\
   \textsf{Block \#2 network bits} &= 32 - \textsf{Block \#2 host bits} \\\\
   &= 32 - 9 &= \mathbf{23} \\\\
-  \textsf{Block \#2 subnet mask (/23)} &= \texttt{11111111.11111111.11111110.00000000} \\\\
-  &= (2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0) . \\\\
-  &\quad (2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0) . \\\\
-  &\quad (2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1) . \\\\
+  \textsf{Block \#2 subnet mask (/23)} &=
+    \texttt{11111111.11111111.11111110.00000000} \\\\
+  &= 2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0 . \\\\
+  &\quad 2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0 . \\\\
+  &\quad 2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 . \\\\
   &\quad 0 . \\\\
-  &= (128 + 64 + 32 + 16 + 8 + 4 + 2 + 1) . \\\\
-  &\quad (128 + 64 + 32 + 16 + 8 + 4 + 2 + 1) . \\\\
-  &\quad (128 + 64 + 32 + 16 + 8 + 4 + 2) . \\\\
+  &= 128 + 64 + 32 + 16 + 8 + 4 + 2 + 1 . \\\\
+  &\quad 128 + 64 + 32 + 16 + 8 + 4 + 2 + 1 . \\\\
+  &\quad 128 + 64 + 32 + 16 + 8 + 4 + 2 . \\\\
   &\quad 0 &= \texttt{255.255.254.0} \\\\
   \textsf{Block \#3 network bits} &= 32 - \textsf{Block \#3 host bits} \\\\
   &= 32 - 7 &= \mathbf{25} \\\\
-  \textsf{Block \#3 subnet mask (/25)} &= \texttt{11111111.11111111.11111111.10000000} \\\\
-  &= (2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0) . \\\\
-  &\quad (2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0) . \\\\
-  &\quad (2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0) . \\\\
+  \textsf{Block \#3 subnet mask (/25)} &=
+    \texttt{11111111.11111111.11111111.10000000} \\\\
+  &= 2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0 . \\\\
+  &\quad 2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0 . \\\\
+  &\quad 2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0 . \\\\
   &\quad 2^7 . \\\\
-  &= (128 + 64 + 32 + 16 + 8 + 4 + 2 + 1) . \\\\
-  &\quad (128 + 64 + 32 + 16 + 8 + 4 + 2 + 1) . \\\\
-  &\quad (128 + 64 + 32 + 16 + 8 + 4 + 2 + 1) . \\\\
+  &= 128 + 64 + 32 + 16 + 8 + 4 + 2 + 1 . \\\\
+  &\quad 128 + 64 + 32 + 16 + 8 + 4 + 2 + 1 . \\\\
+  &\quad 128 + 64 + 32 + 16 + 8 + 4 + 2 + 1 . \\\\
   &\quad 128 &= \texttt{255.255.255.128}
 \end{align}
 $$
@@ -995,65 +1051,71 @@ next network address starts after the previous broadcast address.
 $$
 \begin{align}
   \textsf{Block \#1 address} &= \texttt{146.157.224.0} \\\\
-  &=  (128 + 16 + 2) . \\\\
-  &\quad (128 + 16 + 8 + 4 + 1) . \\\\
-  &\quad (128 + 64 + 32) . \\\\
+  &= 128 + 16 + 2 . \\\\
+  &\quad 128 + 16 + 8 + 4 + 1 . \\\\
+  &\quad 128 + 64 + 32 . \\\\
   &\quad 0 . \\\\
-  &= (2^7 + 2^4 + 2^1) . \\\\
-  &\quad (2^7 + 2^4 + 2^3 + 2^2 + 2^0) . \\\\
-  &\quad (2^7 + 2^6 + 2^5) . \\\\
+  &= 2^7 + 2^4 + 2^1 . \\\\
+  &\quad 2^7 + 2^4 + 2^3 + 2^2 + 2^0 . \\\\
+  &\quad 2^7 + 2^6 + 2^5 . \\\\
   &\quad 0 . \\\\
   &= \texttt{10010010.10011101.11100000.00000000} \\\\
-  \textsf{Block \#1 inv. subnet mask (/22)} &= \underline{\texttt{00000000.00000000.00000011.11111111}} \\\\
-  \textsf{Block \#1 broadcast address} &= \texttt{10010010.10011101.11100011.11111111} \\\\
-  &= (2^7 + 2^4 + 2^1) . \\\\
-  &\quad (2^7 + 2^4 + 2^3 + 2^2 + 2^0) . \\\\
-  &\quad (2^7 + 2^6 + 2^5 + 2^1 + 2^0) . \\\\
-  &\quad (2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0) \\\\
-  &= (128 + 16 + 2) . \\\\
-  &\quad (128 + 16 + 8 + 4 + 1) . \\\\
-  &\quad (128 + 64 + 32 + 2 + 1) . \\\\
-  &\quad (128 + 64 + 32 + 16 + 8 + 4 + 2 + 1) &= \texttt{146.157.227.255} \\\\
+  \textsf{Block \#1 inv. subnet mask (/22)} &=
+    \underline{\texttt{00000000.00000000.00000011.11111111}} \\\\
+  \textsf{Block \#1 broadcast address} &=
+    \texttt{10010010.10011101.11100011.11111111} \\\\
+  &= 2^7 + 2^4 + 2^1 . \\\\
+  &\quad 2^7 + 2^4 + 2^3 + 2^2 + 2^0 . \\\\
+  &\quad 2^7 + 2^6 + 2^5 + 2^1 + 2^0 . \\\\
+  &\quad 2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0 \\\\
+  &= 128 + 16 + 2 . \\\\
+  &\quad 128 + 16 + 8 + 4 + 1 . \\\\
+  &\quad 128 + 64 + 32 + 2 + 1 . \\\\
+  &\quad 128 + 64 + 32 + 16 + 8 + 4 + 2 + 1 &= \texttt{146.157.227.255} \\\\
   \textsf{Block \#2 address} &= \texttt{146.157.228.0} \\\\
-  &=  (128 + 16 + 2) . \\\\
-  &\quad (128 + 16 + 8 + 4 + 1) . \\\\
-  &\quad (128 + 64 + 32 + 4) . \\\\
+  &= 128 + 16 + 2 . \\\\
+  &\quad 128 + 16 + 8 + 4 + 1 . \\\\
+  &\quad 128 + 64 + 32 + 4 . \\\\
   &\quad 0 . \\\\
-  &= (2^7 + 2^4 + 2^1) . \\\\
-  &\quad (2^7 + 2^4 + 2^3 + 2^2 + 2^0) . \\\\
-  &\quad (2^7 + 2^6 + 2^5 + 2^2) . \\\\
+  &= 2^7 + 2^4 + 2^1 . \\\\
+  &\quad 2^7 + 2^4 + 2^3 + 2^2 + 2^0 . \\\\
+  &\quad 2^7 + 2^6 + 2^5 + 2^2 . \\\\
   &\quad 0 . \\\\
   &= \texttt{10010010.10011101.11100100.00000000} \\\\
-  \textsf{Block \#2 inv. subnet mask (/23)} &= \underline{\texttt{00000000.00000000.00000001.11111111}} \\\\
-  \textsf{Block \#2 broadcast address} &= \texttt{10010010.10011101.11100101.11111111} \\\\
-  &= (2^7 + 2^4 + 2^1) . \\\\
-  &\quad (2^7 + 2^4 + 2^3 + 2^2 + 2^0) . \\\\
-  &\quad (2^7 + 2^6 + 2^5 + 2^2 + 2^0) . \\\\
-  &\quad (2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0) \\\\
-  &= (128 + 16 + 2) . \\\\
-  &\quad (128 + 16 + 8 + 4 + 1) . \\\\
-  &\quad (128 + 64 + 32 + 4 + 1) . \\\\
-  &\quad (128 + 64 + 32 + 16 + 8 + 4 + 2 + 1) &= \texttt{146.157.229.255} \\\\
+  \textsf{Block \#2 inv. subnet mask (/23)} &=
+    \underline{\texttt{00000000.00000000.00000001.11111111}} \\\\
+  \textsf{Block \#2 broadcast address} &=
+    \texttt{10010010.10011101.11100101.11111111} \\\\
+  &= 2^7 + 2^4 + 2^1 . \\\\
+  &\quad 2^7 + 2^4 + 2^3 + 2^2 + 2^0 . \\\\
+  &\quad 2^7 + 2^6 + 2^5 + 2^2 + 2^0 . \\\\
+  &\quad 2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0 \\\\
+  &= 128 + 16 + 2 . \\\\
+  &\quad 128 + 16 + 8 + 4 + 1 . \\\\
+  &\quad 128 + 64 + 32 + 4 + 1 . \\\\
+  &\quad 128 + 64 + 32 + 16 + 8 + 4 + 2 + 1 &= \texttt{146.157.229.255} \\\\
   \textsf{Block \#3 address} &= \texttt{146.157.230.0} \\\\
-  &=  (128 + 16 + 2) . \\\\
-  &\quad (128 + 16 + 8 + 4 + 1) . \\\\
-  &\quad (128 + 64 + 32 + 4 + 2) . \\\\
+  &= 128 + 16 + 2 . \\\\
+  &\quad 128 + 16 + 8 + 4 + 1 . \\\\
+  &\quad 128 + 64 + 32 + 4 + 2 . \\\\
   &\quad 0 . \\\\
-  &= (2^7 + 2^4 + 2^1) . \\\\
-  &\quad (2^7 + 2^4 + 2^3 + 2^2 + 2^0) . \\\\
-  &\quad (2^7 + 2^6 + 2^5 + 2^2 + 2^1) . \\\\
+  &= 2^7 + 2^4 + 2^1 . \\\\
+  &\quad 2^7 + 2^4 + 2^3 + 2^2 + 2^0 . \\\\
+  &\quad 2^7 + 2^6 + 2^5 + 2^2 + 2^1 . \\\\
   &\quad 0 . \\\\
   &= \texttt{10010010.10011101.11100110.00000000} \\\\
-  \textsf{Block \#3 inv. subnet mask (/25)} &= \underline{\texttt{00000000.00000000.00000000.01111111}} \\\\
-  \textsf{Block \#3 broadcast address} &= \texttt{10010010.10011101.11100110.01111111} \\\\
-  &= (2^7 + 2^4 + 2^1) . \\\\
-  &\quad (2^7 + 2^4 + 2^3 + 2^2 + 2^0) . \\\\
-  &\quad (2^7 + 2^6 + 2^5 + 2^2 + 2^1) . \\\\
-  &\quad (2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0) \\\\
-  &= (128 + 16 + 2) . \\\\
-  &\quad (128 + 16 + 8 + 4 + 1) . \\\\
-  &\quad (128 + 64 + 32 + 4 + 2) . \\\\
-  &\quad (64 + 32 + 16 + 8 + 4 + 2 + 1) &= \texttt{146.157.230.127}
+  \textsf{Block \#3 inv. subnet mask (/25)} &=
+    \underline{\texttt{00000000.00000000.00000000.01111111}} \\\\
+  \textsf{Block \#3 broadcast address} &=
+    \texttt{10010010.10011101.11100110.01111111} \\\\
+  &= 2^7 + 2^4 + 2^1 . \\\\
+  &\quad 2^7 + 2^4 + 2^3 + 2^2 + 2^0 . \\\\
+  &\quad 2^7 + 2^6 + 2^5 + 2^2 + 2^1 . \\\\
+  &\quad 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0 \\\\
+  &= 128 + 16 + 2 . \\\\
+  &\quad 128 + 16 + 8 + 4 + 1 . \\\\
+  &\quad 128 + 64 + 32 + 4 + 2 . \\\\
+  &\quad 64 + 32 + 16 + 8 + 4 + 2 + 1 &= \texttt{146.157.230.127}
 \end{align}
 $$
 

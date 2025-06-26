@@ -4,7 +4,10 @@
   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({ tex2jax: { inlineMath: [['$', '$']] }, messageStyle: 'none' });
+  MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['$', '$']]},
+    messageStyle: 'none',
+  });
 </script>
 
 # IP protocol
@@ -29,7 +32,8 @@ information essential to routing and delivery.
   *precedence bits.* The next $4 \ \textsf{bits}$ are called *TOS bits,* and the
   last bit is not used.
   - **Precedence:** A 3-bit subfield ranging from
-    $0 \ (\texttt{000} \ \textsf{in binary}) \dots 7 \ (\texttt{111} \ \textsf{in binary})$.
+    $0 \ (\texttt{000} \ \textsf{in binary}) \dots
+    7 \ (\texttt{111} \ \textsf{in binary})$.
     The precedence defines the priority of the datagram in issues such as
     congestion.
   - **TOS:** A 4-bit subfield. We have 5 different types of services requested
